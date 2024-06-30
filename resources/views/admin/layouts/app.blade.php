@@ -7,12 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- csrf token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ ucfirst(AppSettings::get('app_name', 'App')) }} - {{ ucfirst($title ?? '') }}</title>
+    <title>
+        {{-- {{ ucfirst(AppSettings::get('app_name', 'App')) }} - {{ ucfirst($title ?? '') }} --}}
+    </title>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon"
-        href="{{ !empty(AppSettings::get('favicon')) ? asset('storage/' . AppSettings::get('favicon')) : asset('assets/img/favicon.png') }}">
+        href="
+        {{-- {{ !empty(AppSettings::get('favicon')) ? asset('storage/' . AppSettings::get('favicon')) : asset('assets/img/favicon.png') }}" --}}
+        >
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/css/bootstrap.min.css') }}">
     <!-- Fontawesome CSS -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome/css/fontawesome.min.css') }}">
     <!-- Feathericon CSS -->
@@ -31,10 +36,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <!-- Page CSS -->
     @stack('page-css')
-    <!--[if lt IE 9]>
-        <script src="assets/js/html5shiv.min.js"></script>
-        <script src="assets/js/respond.min.js"></script>
-    <![endif]-->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    @vite('resources/css/app.css')
 </head>
 
 <body>
@@ -47,7 +52,7 @@
         <!-- /Header -->
 
         <!-- Sidebar -->
-        {{-- @include('admin.includes.sidebar') --}}
+        @include('admin.includes.sidebar')
         <!-- /Sidebar -->
 
         <!-- Page Wrapper -->
@@ -81,7 +86,9 @@
 
 </body>
 <!-- jQuery -->
-<script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"> fsda</script>
+<script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}">
+    fsda
+</script>
 
 <!-- Bootstrap Core JS -->
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
@@ -95,6 +102,9 @@
 <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
 <!-- Custom JS -->
 <script src="{{ asset('assets/js/script.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</script>
 <script>
     $(document).ready(function() {
         $('body').on('click', '#deletebtn', function() {

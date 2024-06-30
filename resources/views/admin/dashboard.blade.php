@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-{{-- <x-assets.datatables /> --}}
+<x-assets.datatables />
 
 @push('page-css')
     <link rel="stylesheet" href="{{ asset('assets/plugins/chart.js/Chart.min.css') }}">
@@ -8,12 +8,19 @@
 
 @push('page-header')
     <div class="col-sm-12">
-        <h3 class="page-title">Welcome {{ auth()->user()->name }}!</h3>
+        <h3 class="page-title">
+            @if (auth()->check())
+                Welcome {{ auth()->user()->name }}!
+            @else
+                Welcome...
+            @endif
+        </h3>
         <ul class="breadcrumb">
             <li class="breadcrumb-item active">Dashboard</li>
         </ul>
     </div>
 @endpush
+
 
 @section('content')
     <div class="row">
@@ -25,18 +32,20 @@
                             <i class="fe fe-money"></i>
                         </span>
                         <div class="dash-count">
-                            <h3>{{ AppSettings::get('app_currency', '$') }} {{ $today_sales }}</h3>
+                            <h3>
+                                {{-- {{ AppSettings::get('app_currency', '$') }} {{ $today_sales }} --}}
+                            </h3>
                         </div>
                     </div>
                     <div class="dash-widget-info">
                         <h6 class="text-muted">Today's Sales</h6>
-                        <!-- <div class="progress progress-sm">
+                        <div class="progress progress-sm">
                             <div class="progress-bar bg-success w-50"></div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div><!-- Visit codeastro.com for more projects -->
+        </div>
         <div class="col-xl-3 col-sm-6 col-12">
             <div class="card">
                 <div class="card-body">
@@ -51,10 +60,11 @@
                     <div class="dash-widget-info">
 
                         <h6 class="text-muted">Available Categories</h6>
-                        <!-- <div class="progress progress-sm">
+                        <div class="progress progress-sm">
                             <div class="progress-bar bg-info w-50"></div>
-                        </div> -->
-                    </div><!-- Visit codeastro.com for more projects -->
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -72,9 +82,9 @@
                     <div class="dash-widget-info">
 
                         <h6 class="text-muted">Expired Medicines</h6>
-                        <!-- <div class="progress progress-sm">
+                        <div class="progress progress-sm">
                             <div class="progress-bar bg-danger w-50"></div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,14 +103,14 @@
                     <div class="dash-widget-info">
 
                         <h6 class="text-muted">System Users</h6>
-                        <!-- <div class="progress progress-sm">
+                        <div class="progress progress-sm">
                             <div class="progress-bar bg-warning w-50"></div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div><!-- Visit codeastro.com for more projects -->
+    </div>
     <div class="row">
         <div class="col-md-12 col-lg-7">
             <div class="card card-table p-3">
@@ -125,11 +135,11 @@
                     </div>
                 </div>
             </div>
-        </div><!-- Visit codeastro.com for more projects -->
+        </div>
 
         <div class="col-md-12 col-lg-5">
 
-            <!-- Pie Chart -->
+
             <div class="card card-chart">
                 <div class="card-header">
                     <h4 class="card-title text-center">Graph Report</h4>
@@ -140,7 +150,7 @@
                     </div>
                 </div>
             </div>
-            <!-- /Pie Chart -->
+
 
         </div>
 
