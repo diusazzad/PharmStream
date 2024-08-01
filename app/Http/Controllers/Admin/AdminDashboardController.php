@@ -7,8 +7,9 @@ use App\Models\Category;
 use App\Models\Purchase;
 use App\Models\Sale;
 use App\Models\Supplier;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class AdminDashboardController extends Controller
 {
@@ -17,36 +18,46 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
-        $title = 'dashboard';
-        $total_purchases = Purchase::where('expiry_date', '!=', Carbon::now())->count();
-        $total_categories = Category::count();
-        $total_suppliers = Supplier::count();
-        $total_sales = Sale::count();
+        try {
+            $title = 'Dashboard';
 
-        // $pieChart = app()->chartjs
-        //     ->name('pieChart')
-        //     ->type('pie')
-        //     ->size(['width' => 400, 'height' => 200])
-        //     ->labels(['Total Purchases', 'Total Suppliers', 'Total Sales'])
-        //     ->datasets([
-        //         [
-        //             'backgroundColor' => ['#FF6384', '#36A2EB', '#7bb13c'],
-        //             'hoverBackgroundColor' => ['#FF6384', '#36A2EB', '#7bb13c'],
-        //             'data' => [$total_purchases, $total_suppliers, $total_sales],
-        //         ],
-        //     ])
-        //     ->options([]);
+            // Assuming new Artisan commands for data retrieval
+            $totals = $this->fetchTotals();
+            $totalExpiredProducts = $this->fetchTotalExpiredProducts();
+            $latestSales = $this->fetchLatestSales();
+            $todaySales = $this->fetchTodaySales();
 
-        $total_expired_products = Purchase::whereDate('expiry_date', '=', Carbon::now())->count();
-        $latest_sales = Sale::whereDate('created_at', '=', Carbon::now())->get();
-        $today_sales = Sale::whereDate('created_at', '=', Carbon::now())->sum('total_price');
-        return view('admin.dashboard', compact(
-            'title', 
-            // 'pieChart',
-             'total_expired_products',
-            'latest_sales', 'today_sales', 'total_categories'
-        ));
-        // return view('admin.dashboard');
+            return view('admin.dashboard', compact('title', 'totals', 'totalExpiredProducts', 'latestSales', 'todaySales'));
+        } catch (\Exception $e) {
+            Log::error("An error occurred in the dashboard index method: {$e->getMessage()}");
+
+            return redirect()->route('home')->with('error', 'An unexpected error occurred. Please try again later.');
+        }
+    }
+
+    private function fetchTotals(): array
+    {
+        return [
+            'totalPurchases' => Purchase::where('expiry_date', '!=', now())->count(),
+            'totalCategories' => Category::count(),
+            'totalSuppliers' => Supplier::count(),
+            'totalSales' => Sale::count(),
+        ];
+    }
+
+    private function fetchTotalExpiredProducts(): int
+    {
+        return Purchase::whereDate('expiry_date', '=', now())->count();
+    }
+
+    private function fetchLatestSales(): Collection
+    {
+        return Sale::whereDate('created_at', '=', now())->get();
+    }
+
+    private function fetchTodaySales(): float
+    {
+        return Sale::whereDate('created_at', '=', now())->sum('total_price');
     }
 
     /**

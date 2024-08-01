@@ -1,0 +1,35 @@
+html body p {
+    color: #fff !important;
+}
+
+.dark-layout h2 {
+    color: #fff !important;
+}
+
+.dark-layout label {
+    color: #fff !important;
+}
+
+.dark-layout .input-group .input-group-text {
+    background-color: #fff !important;
+}
+
+.dark-layout .form-check-input:not(:checked) {
+    background-color: #fff !important;
+}
+
+input.form-control {
+    color: #000000 !important;
+}
+
+.dark-layout .btn.btn-dark {
+    background-color: #161d31 !important;
+}
+
+.dark-layout .auth-wrapper .auth-bg {
+    background-color: #ff9f43;
+}
+
+form .error:not(input) {
+    color: #ff0002;
+}

@@ -8,14 +8,12 @@
     <!-- csrf token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
-        {{-- {{ ucfirst(AppSettings::get('app_name', 'App')) }} - {{ ucfirst($title ?? '') }} --}}
+        {{-- {{ ucfirst(AppSettings::get('app_name', 'PharmStream')) }} - {{ ucfirst($title ?? '') }} --}}
     </title>
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon"
-        href="
-        {{-- {{ !empty(AppSettings::get('favicon')) ? asset('storage/' . AppSettings::get('favicon')) : asset('assets/img/favicon.png') }}" --}}
-        >
-    <!-- Bootstrap CSS -->
+        {{-- href=" {{ !empty(AppSettings::get('favicon')) ? asset('storage/' . AppSettings::get('favicon')) : asset('assets/img/favicon.png') }}"> --}}
+    {{-- < Bootstrap CSS> --}}
     <link rel="stylesheet"
         href="{{ asset('assets/css/bootstrap.min.css') }}">
     <!-- Fontawesome CSS -->
@@ -37,8 +35,7 @@
     <!-- Page CSS -->
     @stack('page-css')
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
     @vite('resources/css/app.css')
 </head>
 
@@ -48,7 +45,7 @@
     <div class="main-wrapper">
 
         <!-- Header -->
-        {{-- @include('admin.includes.header') --}}
+        @include('admin.includes.header')
         <!-- /Header -->
 
         <!-- Sidebar -->
@@ -102,93 +99,87 @@
 <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
 <!-- Custom JS -->
 <script src="{{ asset('assets/js/script.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-</script>
-<script>
-    $(document).ready(function() {
-        $('body').on('click', '#deletebtn', function() {
-            var id = $(this).data('id');
-            var route = $(this).data('route');
-            swal.queue([{
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                type: "warning",
-                showCancelButton: !0,
-                confirmButtonText: '<i class="fe fe-trash mr-1"></i> Delete!',
-                cancelButtonText: '<i class="fa fa-times mr-1"></i> Cancel!',
-                confirmButtonClass: "btn btn-success mt-2",
-                cancelButtonClass: "btn btn-danger ml-2 mt-2",
-                buttonsStyling: !1,
-                preConfirm: function() {
-                    return new Promise(function() {
-                        $.ajax({
-                            url: route,
-                            type: "DELETE",
-                            data: {
-                                "id": id
-                            },
-                            success: function() {
-                                swal.insertQueueStep(
-                                    Swal.fire({
-                                        title: "Deleted!",
-                                        text: "Resource has been deleted.",
-                                        type: "success",
-                                        showConfirmButton: !
-                                            1,
-                                        timer: 1500,
-                                    })
-                                )
-                                $('.datatable').DataTable().ajax
-                                    .reload();
-                            }
-                        })
 
-                    })
-                }
-            }]).catch(swal.noop);
-        });
-    });
-    @if (Session::has('message'))
-        var type = "{{ Session::get('alert-type', 'info') }}";
+<script>
+    // Function to delete resource
+    function deleteResource(id, route) {
+        swal.queue([{
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonText: '<i class="fe fe-trash mr-1"></i> Delete!',
+            cancelButtonText: '<i class="fa fa-times mr-1"></i> Cancel!',
+            confirmButtonClass: "btn btn-success mt-2",
+            cancelButtonClass: "btn btn-danger ml-2 mt-2",
+            buttonsStyling: false,
+            preConfirm: function() {
+                return new Promise(function(resolve) {
+                    $.ajax({
+                        url: route,
+                        type: "DELETE",
+                        data: {
+                            id: id
+                        },
+                        success: function() {
+                            swal.close();
+                            showToast("Deleted!", "success");
+                            reloadDataTable();
+                        }
+                    });
+                });
+            }
+        }]);
+    }
+
+    // Function to show toast notification
+    function showToast(message, type) {
+        var snackbarOptions = {
+            text: message,
+            actionTextColor: '#fff',
+            backgroundColor: getBackgroundColor(type),
+            pos: 'top-right'
+        };
+        Snackbar.show(snackbarOptions);
+    }
+
+    // Function to get background color based on alert type
+    function getBackgroundColor(type) {
         switch (type) {
             case 'info':
-                Snackbar.show({
-                    text: "{{ Session::get('message') }}",
-                    actionTextColor: '#fff',
-                    backgroundColor: '#2196f3'
-                });
-                break;
-
+                return '#2196f3';
             case 'warning':
-                Snackbar.show({
-                    text: "{{ Session::get('message') }}",
-                    pos: 'top-right',
-                    actionTextColor: '#fff',
-                    backgroundColor: '#e2a03f'
-                });
-                break;
-
+                return '#e2a03f';
             case 'success':
-                Snackbar.show({
-                    text: "{{ Session::get('message') }}",
-                    pos: 'top-right',
-                    actionTextColor: '#fff',
-                    backgroundColor: '#8dbf42'
-                });
-                break;
-
+                return '#8dbf42';
             case 'danger':
-                Snackbar.show({
-                    text: "{{ Session::get('message') }}",
-                    pos: 'top-right',
-                    actionTextColor: '#fff',
-                    backgroundColor: '#e7515a'
-                });
-                break;
+                return '#e7515a';
+            default:
+                return '#000'; // Default color
         }
+    }
+
+    // Function to reload DataTable
+    function reloadDataTable() {
+        $('.datatable').DataTable().ajax.reload();
+    }
+
+    // Attach click event listener
+    $('body').on('click', '#deletebtn', function() {
+        var id = $(this).data('id');
+        var route = $(this).data('route');
+        deleteResource(id, route);
+    });
+
+    // Show session message if exists
+    @if (Session::has('message'))
+        var type = "{{ Session::get('alert-type', 'info') }}";
+        showToast("{{ Session::get('message') }}", type);
     @endif
 </script>
+<!-- Page JS -->
+@stack('page-js')
+
 <!-- Page JS -->
 @stack('page-js')
 
