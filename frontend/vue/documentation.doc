@@ -1,0 +1,42 @@
+# Vue JS Learning From Documentation
+
+## Notes
+
+### ref
+
+Defination
+    A ref in Vue is a special attribute that allows you to obtain a direct reference to a specific DOM element or child component instance after it's mounted. It's like a pointer that points to an element in your Vue component's template.
+
+Analogy: 
+
+    Imagine you're building a house. The ref is like a label you attach to a specific room. Once the house is built (component is mounted), you can use the label to find and access that room (DOM element) directly.
+     
+Code snippet
+        <template>
+        <input type="text" ref="myInput">
+        </template>
+
+        <script>
+        export default {
+        mounted() {
+            // Access the input element after it's mounted
+            this.$refs.myInput.focus();
+        }
+        }
+        </script>
+    In this example:
+
+    We've added the ref="myInput" attribute to the input element. This creates a reference to the input element named myInput.
+    In the mounted lifecycle hook, we access the input element using this.$refs.myInput and call the focus() method on it.
+
+Key Points:
+    Access to DOM elements: While Vue encourages declarative rendering, refs provide a way to directly manipulate DOM elements when necessary.
+    Lifecycle hook: You typically access refs in the mounted lifecycle hook or later, as the element must be in the DOM before you can reference it.
+    Read-only: The value returned by a ref is read-only. You can't directly modify the DOM element through the ref.
+    Function-based refs: In addition to string-based refs, you can use function-based refs for more flexibility and control over when and how the ref is assigned.
+Use Cases:
+
+    Focusing input elements
+    Integrating third-party libraries
+    Manipulating DOM elements directly (use with caution)
+    Accessing child component instances
