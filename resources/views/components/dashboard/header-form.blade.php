@@ -6,22 +6,22 @@
 
     <ul class="dropdown-menu border-r20 border-0 shadow-lg overflow-hidden" aria-labelledby="dropdownMenuButton1">
         <li>
-            <a class="dropdown-item" href="https://demopharma.ayaantec.com/medicines/add">
+            <a class="dropdown-item" href="">
                 <i class="fas fa-pills"></i> Add Medicine
             </a>
         </li>
         <li>
-            <a class="dropdown-item" href="https://demopharma.ayaantec.com/supplier/add">
+            <a class="dropdown-item" href="">
                 <i class="fa-solid fa-people-carry-box"></i> Add Manufacture
             </a>
         </li>
         <li>
-            <a class="dropdown-item" href="https://demopharma.ayaantec.com/purchase/create">
+            <a class="dropdown-item" href="">
                 <i class="fas fa-cart-shopping"></i> Add Purchase
             </a>
         </li>
         <li>
-            <a class="dropdown-item" href="https://demopharma.ayaantec.com/vendor/create">
+            <a class="dropdown-item" href="">
                 <i class="fa-solid fa-store"></i> Add Vendor
             </a>
         </li>

@@ -11,9 +11,9 @@
     });
 </script>
 
-<script src="{{ asset('auth/dashboard/morris-chart/popper.min.js') }}"></script>
+{{-- <script src="{{ asset('auth/dashboard/morris-chart/popper.min.js') }}"></script>
 <script src="{{ asset('auth/dashboard/morris-chart//raphael-min.js') }}"></script>
-<script src="{{ asset('auth/dashboard/morris-chart/morris.min.js') }}"></script>
+<script src="{{ asset('auth/dashboard/morris-chart/morris.min.js') }}"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
     Morris.Line({

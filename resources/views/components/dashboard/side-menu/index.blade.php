@@ -23,7 +23,7 @@
 <div class="main-menu-content">
     <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
         <li class="active">
-            <a class="title d-flex align-items-center" href=" dashboard">
+            <a class="title d-flex align-items-center" href="{{ route('dashboard.index') }}">
                 <i class="fa fa-tachometer"></i>
                 <span class="menu-item text-truncate " data-i18n="List">
                     Dashboard
@@ -31,7 +31,7 @@
             </a>
         </li>
         <li class=" nav-item  || ">
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="">
                 <i class="fas fa-user-gear"></i>
                 <span class="menu-title text-truncate" data-i18n="Invoice">
                     User &amp; Role
@@ -39,7 +39,7 @@
             </a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" users/index">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.user.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Users
@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" roles/index">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Roles &amp; Permissions
@@ -57,7 +57,7 @@
             </ul>
         </li>
         <li class=" nav-item  || ">
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="">
                 <i class="fas fa-gear"></i>
                 <span class="menu-title text-truncate" data-i18n="Invoice">
                     Settings
@@ -65,7 +65,7 @@
             </a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="title d-flex align-items-center" href="settings">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             General Setting
@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href="settings/email-setting">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Email Setting
@@ -81,7 +81,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href="languages/index">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Language Setting
@@ -91,7 +91,7 @@
             </ul>
         </li>
         <li class=" nav-item  || ">
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="">
                 <i class="fas fa-users"></i>
                 <span class="menu-title text-truncate" data-i18n="Invoice">
                     Customers
@@ -99,7 +99,7 @@
             </a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="title d-flex align-items-center" href="customers/create">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Customer Add
@@ -107,7 +107,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" customers/index">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Customer List
@@ -117,7 +117,7 @@
             </ul>
         </li>
         <li class=" nav-item ">
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="">
                 <i class="fas fa-gear"></i>
                 <span class="menu-title text-truncate" data-i18n="Invoice">
                     Expense
@@ -125,7 +125,7 @@
             </a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" expenses/create">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             New Expense
@@ -133,7 +133,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" expenses/index">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Expense List
@@ -141,7 +141,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" expense-categories/create">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             New Category
@@ -159,7 +159,7 @@
             </ul>
         </li>
         <li class="nav-item ">
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="">
                 <i class="fas fa-pills"></i>
                 <span class="menu-title text-truncate" data-i18n="Invoice">
                     Medicine Stock
@@ -167,7 +167,7 @@
             </a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" report/instock-medicine">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             In Stock
@@ -175,7 +175,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" report/lowstock-medicine">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Low Stock
@@ -183,7 +183,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" report/stockout-medicine">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Stockout
@@ -191,7 +191,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" report/upcoming-expire-medicine">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Upcoming Expired
@@ -199,7 +199,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" report/already-expire-medicine">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Already Expired
@@ -210,7 +210,7 @@
         </li>
         <!-- Ecommerce Setup -->
         <li class=" nav-item ">
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="">
                 <i class="fas fa-shopping-bag"></i>
                 <span class="menu-title text-truncate" data-i18n="Invoice">
                     Ecommerce Management
@@ -219,7 +219,7 @@
             </a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="d-flex align-items-center" href=" ecommerce/setting">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-cogs"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Settings
@@ -227,7 +227,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="d-flex align-items-center" href=" ecommerce/pages">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-cogs"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Pages
@@ -235,7 +235,7 @@
                     </a>
                 </li>
                 <li class=" || ">
-                    <a class="d-flex align-items-center" href=" ecommerce/slider">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-images"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Slider
@@ -243,7 +243,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="d-flex align-items-center" href=" ecommerce/product-list">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Products
@@ -251,7 +251,7 @@
                     </a>
                 </li>
                 <li class=" || ">
-                    <a class="d-flex align-items-center" href=" ecommerce/product/instock">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Instock Product
@@ -259,7 +259,7 @@
                     </a>
                 </li>
                 <li class=" || ">
-                    <a class="d-flex align-items-center" href=" ecommerce/product-types">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Categories
@@ -267,7 +267,7 @@
                     </a>
                 </li>
                 <li class=" || ">
-                    <a class="d-flex align-items-center" href=" ecommerce/order">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Orders
@@ -329,7 +329,7 @@
 
         <!-- HRM -->
         <li class="nav-item ">
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="">
                 <i class="fas fa-address-book"></i>
                 <span class="menu-title text-truncate" data-i18n="Invoice">
                     Hr Management
@@ -338,7 +338,7 @@
             </a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="d-flex align-items-center" href=" hrm/department">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-user-graduate"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Departments
@@ -346,7 +346,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="d-flex align-items-center" href=" hrm/designation">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-user-cog"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Designations
@@ -354,7 +354,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="d-flex align-items-center" href=" hrm/employee">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-user-friends"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Employees
@@ -362,7 +362,7 @@
                     </a>
                 </li>
                 <li class=" || ">
-                    <a class="d-flex align-items-center" href=" hrm/attendance">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-user-check"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Attendance
@@ -423,7 +423,7 @@
         </li>
 
         <li class=" nav-item ">
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="">
                 <i class="fas fa-bank"></i>
                 <span class="menu-title text-truncate" data-i18n="Invoice">
                     Accounts
@@ -432,7 +432,7 @@
             </a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="d-flex align-items-center" href=" account-types">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Account Type
@@ -440,7 +440,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="d-flex align-items-center" href=" accounts">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Account
@@ -448,7 +448,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="d-flex align-items-center" href=" transactions">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Transaction
@@ -456,7 +456,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="d-flex align-items-center" href=" reports/trail-balance">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Trail Balance
@@ -464,7 +464,7 @@
                     </a>
                 </li>
                 <li class=" || ">
-                    <a class="d-flex align-items-center" href=" reports/balance-sheet">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Balance Sheet
@@ -472,7 +472,7 @@
                     </a>
                 </li>
                 <li class=" || ">
-                    <a class="d-flex align-items-center" href=" reports/income-statement">
+                    <a class="d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate" data-i18n="List">
                             Income Statement
@@ -481,12 +481,12 @@
                 </li>
             </ul>
         </li>
-        <li class=" nav-item "><a class="d-flex align-items-center" href="#"><i
+        <li class=" nav-item "><a class="d-flex align-items-center" href=""><i
                     class="fa-solid fa-people-carry-box"></i><span class="menu-title text-truncate"
                     data-i18n="Invoice">Supplier</span></a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" supplier/add">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Supplier Add
@@ -494,7 +494,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" supplier/list">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Supplier List
@@ -506,13 +506,13 @@
 
         <!-- Vendors Routes -->
         <li class=" nav-item ">
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="">
                 <i class="fa-solid fa-store"></i>
                 <span class="menu-title text-truncate" data-i18n="Invoice">Vendors</span>
             </a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" vendor/create">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Vendor Add
@@ -520,7 +520,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" vendor/list">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Vendor List
@@ -531,12 +531,12 @@
         </li>
 
         <li class=" nav-item  ||  ||  ||  ||  ||  || ">
-            <a class="d-flex align-items-center" href="#"><i class="fas fa-pills"></i><span
+            <a class="d-flex align-items-center" href=""><i class="fas fa-pills"></i><span
                     class="menu-title text-truncate" data-i18n="Invoice">Medicine</span></a>
             <ul class="menu-content">
 
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" medicines/add">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Medicine Add
@@ -544,7 +544,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" medicines/list">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Mdicine List
@@ -552,7 +552,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" medicines/categories">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Categories
@@ -560,7 +560,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" medicines/unit">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Units
@@ -568,7 +568,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" medicines/leaf">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Leaf
@@ -576,7 +576,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" medicines/type">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Types
@@ -584,7 +584,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" medicines/import">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Medicine Import
@@ -594,12 +594,12 @@
             </ul>
         </li>
         <li class=" nav-item  ">
-            <a class="d-flex align-items-center" href="#"><i class="fas fa-cart-shopping"></i><span
+            <a class="d-flex align-items-center" href=""><i class="fas fa-cart-shopping"></i><span
                     class="menu-title text-truncate" data-i18n="Invoice">Purchase</span>
             </a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" purchase/create">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Add Purchase
@@ -607,7 +607,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" purchase/index">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Purchase History
@@ -615,7 +615,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" purchase/return-history">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Return History
@@ -624,12 +624,12 @@
                 </li>
             </ul>
         </li>
-        <li class="nav-item  || "><a class="d-flex align-items-center" href="#"><i
+        <li class="nav-item  || "><a class="d-flex align-items-center" href=""><i
                     class="fa-solid fa-file-invoice"></i><span class="menu-title text-truncate"
                     data-i18n="Invoice">Sales</span></a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" pos">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             New Invoice
@@ -637,7 +637,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" invoice/reports">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Invoice History
@@ -645,7 +645,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" returned_history">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Return History
@@ -655,7 +655,7 @@
             </ul>
         </li>
         <li class=" nav-item  ||  ||  ||  || ">
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="">
                 <i class="fa-solid fa-chart-line"></i>
                 <span class="menu-title text-truncate" data-i18n="Invoice">
                     Reports
@@ -663,7 +663,7 @@
             </a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" report/customer/due">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Customer Due
@@ -671,7 +671,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" report/supplier/due">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Payable Manufacturer
@@ -679,7 +679,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" reports">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Sells &amp; Purchase Reports
@@ -687,7 +687,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" report/medicine/topsell">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Top Sell Medicine
@@ -695,7 +695,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" profit">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Medicine Profit &amp; Loss
@@ -703,7 +703,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" report/business/profit-loss">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Business Profit &amp; Loss
@@ -713,7 +713,7 @@
             </ul>
         </li>
         <li class=" nav-item  ||  ||  || ">
-            <a class="d-flex align-items-center" href="#">
+            <a class="d-flex align-items-center" href="">
                 <i class="fas fa-prescription"></i>
                 <span class="menu-title text-truncate" data-i18n="Invoice">
                     Prescription
@@ -721,7 +721,7 @@
             </a>
             <ul class="menu-content">
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" doctor">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Doctors
@@ -729,7 +729,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" patient">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Patients
@@ -737,7 +737,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" test">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Diagnosis &amp; Tests
@@ -745,7 +745,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a class="title d-flex align-items-center" href=" prescription">
+                    <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                         <i class="fas fa-circle"></i>
                         <span class="menu-item text-truncate " data-i18n="List">
                             Prescriptions
@@ -755,7 +755,7 @@
             </ul>
         </li>
         <li class="">
-            <a class="title d-flex align-items-center" href=" payment_methdod">
+            <a class="title d-flex align-items-center" href="{{ route('superadmin.role.index') }}">
                 <i class="fas fa-circle"></i>
                 <span class="menu-item text-truncate " data-i18n="List">
                     Payment Method

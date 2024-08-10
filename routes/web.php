@@ -11,11 +11,12 @@ use App\Http\Controllers\Admin\SaleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
@@ -52,6 +53,22 @@ Route::middleware('auth')->group(function () {
 //     Route::resource('backups', BackupController::class); // Assuming BackupController instead of BackupController
 // });
 
-Route::resource('/dashboard', TestController::class);
+// Route::resource('/dashboard', TestController::class);
+// Route::resource('/users/index', SuperAdminController::class);
+// Route::get('user/index', [SuperAdminController::class, 'superadmin_user_index'])->name('superadmin.user.index');
+
+
+
+// Route::middleware(['auth', 'role:super_add'])->prefix('admin')->group(function () {
+//     Route::get('/dashboard', [SuperAdminController::class, 'dashboard'])->name('superadmin.dashboard');
+//     Route::get('/users', [SuperAdminController::class, 'users'])->name('superadmin.users');
+//     // ... other superadmin routes
+// });
+
+Route::prefix('superadmin')->group(function () {
+    Route::resource('/dashboard', SuperAdminController::class);
+    Route::get('/user/index', [SuperAdminController::class, 'superadmin_user_index'])->name('superadmin.user.index');
+    Route::get('/role/index', [SuperAdminController::class, 'superadmin_role_index'])->name('superadmin.role.index');
+});
 
 require __DIR__ . '/auth.php';

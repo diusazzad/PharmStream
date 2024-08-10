@@ -5,6 +5,5 @@ import RefExCounterVue from "@/components/lesson/RefExCounterVue.vue";
 <template>
   <div>
     <RefExCounterVue></RefExCounterVue>
-    
   </div>
 </template>
