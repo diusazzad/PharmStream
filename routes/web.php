@@ -67,8 +67,44 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('superadmin')->group(function () {
     Route::resource('/dashboard', SuperAdminController::class);
+    
     Route::get('/user/index', [SuperAdminController::class, 'superadmin_user_index'])->name('superadmin.user.index');
     Route::get('/role/index', [SuperAdminController::class, 'superadmin_role_index'])->name('superadmin.role.index');
+    Route::get('/role/create', [SuperAdminController::class, 'superadmin_role_create'])->name('superadmin.role.create');
+
+
+    Route::get('/setting/index', [SuperAdminController::class, 'superadmin_general_setting'])->name('superadmin.setting.index');
+    Route::get('/setting/email', [SuperAdminController::class, 'superadmin_email_setting'])->name('superadmin.setting.email');
+    Route::get('/setting/language', [SuperAdminController::class, 'superadmin_language_setting'])->name('superadmin.setting.language');
+
+    Route::get('/customer/create', [SuperAdminController::class, 'superadmin_customer_create'])->name('superadmin.customer.add');
+    Route::get('/customer/index', [SuperAdminController::class, 'superadmin_customer_index'])->name('superadmin.customer.index');
+
+    Route::get('/expense/create', [SuperAdminController::class, 'superadmin_expense_create'])->name('superadmin.expense.create');
+    Route::get('/expense/index', [SuperAdminController::class, 'superadmin_expense_index'])->name('superadmin.expense.index');
+    Route::get('/expense/category/create', [SuperAdminController::class, 'superadmin_expense_category_create'])->name('superadmin.expense_category.create');
+    Route::get('/expense/category/index', [SuperAdminController::class, 'superadmin_expense_category_index'])->name('superadmin.expense_category.index');
+
+    Route::get('/supplier/create', [SuperAdminController::class, 'superadmin_supplier_create'])->name('superadmin.supplier.create');
+    Route::get('/supplier/index', [SuperAdminController::class, 'superadmin_supplier_index'])->name('superadmin.supplier.index');
+
+    Route::get('/vendor/create', [SuperAdminController::class, 'superadmin_vendor_create'])->name('superadmin.vendor.create');
+    Route::get('/vendor/index', [SuperAdminController::class, 'superadmin_vendor_index'])->name('superadmin.vendor.index');
+
+    Route::get('/medicine/create', [SuperAdminController::class, 'superadmin_medicine_create'])->name('superadmin.medicine.create');
+    Route::get('/medicine/index', [SuperAdminController::class, 'superadmin_medicine_index'])->name('superadmin.medicine.index');
+    Route::get('/medicine/category', [SuperAdminController::class, 'superadmin_medicine_category'])->name('superadmin.medicine.category');
+    Route::get('/medicine/unit', [SuperAdminController::class, 'superadmin_medicine_unit'])->name('superadmin.medicine.unit');
+    Route::get('/medicine/leaf', [SuperAdminController::class, 'superadmin_medicine_leaf'])->name('superadmin.medicine.leaf');
+    Route::get('/medicine/type', [SuperAdminController::class, 'superadmin_medicine_type'])->name('superadmin.medicine.type');
+    Route::get('/medicine/import', [SuperAdminController::class, 'superadmin_medicine_import'])->name('superadmin.medicine.import');
+
+    Route::get('/purchase/create', [SuperAdminController::class, 'superadmin_purchase_create'])->name('superadmin.purchase.create');
+    Route::get('/purchase/index', [SuperAdminController::class, 'superadmin_purchase_create'])->name('superadmin.purchase.index');
+    Route::get('/purchase/history', [SuperAdminController::class, 'superadmin_purchase_create'])->name('superadmin.purchase.history');
+
+
+    Route::get('/payment', [SuperAdminController::class, 'superadmin_payment_index'])->name('superadmin.payment.index');
 });
 
 require __DIR__ . '/auth.php';

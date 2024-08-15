@@ -70,6 +70,10 @@ class SuperAdminController extends Controller
     {
         return view('user.superadmin.role.index');
     }
+    public function superadmin_role_create()
+    {
+        return view('user.superadmin.role.create');
+    }
     public function superadmin_general_setting()
     {
         return view('user.superadmin.setting.general');
@@ -100,26 +104,93 @@ class SuperAdminController extends Controller
     }
     public function superadmin_expense_category_create()
     {
-        return view('User.superadmin.expense.expense_categories.create');
+        return view('user.superadmin.expense.expense_categories.create');
     }
     public function superadmin_expense_category_index()
     {
-        return view('User.superadmin.expense.expense_categories.index');
+        return view('user.superadmin.expense.expense_categories.index');
     }
     public function superadmin_report_in_stock_medicine()
     {
-        return view('User.superadmin.report.in_stock');
+        return view('user.superadmin.report.in_stock');
     }
     public function superadmin_report_low_stock_medicine()
     {
-        return view('User.superadmin.report.low_stock');
+        return view('user.superadmin.report.low_stock');
     }
     public function superadmin_report_upcoming_stock_medicine()
     {
-        return view('User.superadmin.report.upcoming_expried');
+        return view('user.superadmin.report.upcoming_expried');
     }
     public function superadmin_report_expire_stock_medicine()
     {
-        return view('User.superadmin.report.already_expried');
+        return view('user.superadmin.report.already_expried');
+    }
+    public function superadmin_supplier_create()
+    {
+        return view('user.superadmin.supplier.create');
+    }
+    public function superadmin_supplier_index()
+    {
+        return view('user.superadmin.supplier.index');
+    }
+    public function superadmin_vendor_create()
+    {
+        return view('user.superadmin.vendor.create');
+    }
+    public function superadmin_vendor_index()
+    {
+        return view('user.superadmin.vendor.index');
+    }
+    public function superadmin_medicine_create()
+    {
+        return view('user.superadmin.medicine.create');
+    }
+    public function superadmin_medicine_index()
+    {
+        return view('user.superadmin.medicine.index');
+    }
+    public function superadmin_medicine_category()
+    {
+        return view('user.superadmin.medicine.category');
+    }
+    public function superadmin_medicine_unit()
+    {
+        return view('user.superadmin.medicine.unit');
+    }
+    public function superadmin_medicine_leaf()
+    {
+        return view('user.superadmin.medicine.leaf');
+    }
+    public function superadmin_medicine_type()
+    {
+        return view('user.superadmin.medicine.type');
+    }
+    public function superadmin_medicine_import()
+    {
+        return view('user.superadmin.medicine.import');
+    }
+    public function superadmin_purchase_create()
+    {
+        return view('user.superadmin.purchase.create');
+    }
+    public function superadmin_purchase_index()
+    {
+        return view('user.superadmin.purchase.index');
+    }
+    public function superadmin_purchase_history()
+    {
+        return view('user.superadmin.purchase.history');
+    }
+    public function superadmin_sale_pos()
+    {
+        return view('user.superadmin.sale.pos');
+    }
+
+
+
+    public function superadmin_payment()
+    {
+        return view('user.superadmin.payment.index');
     }
 }

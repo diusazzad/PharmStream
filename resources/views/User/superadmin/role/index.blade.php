@@ -9,12 +9,13 @@
                     <h3 class="card-title">Roles</h3>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('superadmin.user.index') }}">Dashboard</a>
+                            </li>
                             <li class="breadcrumb-item active" aria-current="page">Roles</li>
                         </ol>
                     </nav>
                 </div>
-                <a class="btn btn-primary" href="">Add New</a>
+                <a class="btn btn-primary" href="{{ route('superadmin.role.create') }}">Add New</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive pt-0">
@@ -32,14 +33,13 @@
                                 <td>Sales Manager</td>
 
                                 <td class="d-flex">
-                                    <a class="edit-button btn btn-sm btn-info"
-                                        href="https://demopharma.ayaantec.com/roles/edit/3">
+                                    <a class="edit-button btn btn-sm btn-info" href="">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <form onclick="return confirm('Are you sure?')" class="delete"
-                                        action="https://demopharma.ayaantec.com/roles/delete/3" method="POST">
+                                    <form onclick="return confirm('Are you sure?')" class="delete" action=""
+                                        method="POST">
                                         <input type="hidden" name="_method" value="delete"> <input type="hidden"
-                                            name="_token" value="UeiVsu7uMnAD9hSo9WJ5SOM72CNGEZ5peBd68GMA">
+                                            name="_token" value="">
                                         <button type="submit" class="delete-button btn btn-sm btn-danger">
                                             <i class="fas fa-trash"></i>
                                         </button>
