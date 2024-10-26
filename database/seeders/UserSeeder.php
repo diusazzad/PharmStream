@@ -20,12 +20,14 @@ class UserSeeder extends Seeder
         //     'email' => 'john.doe@example.com',
         //     'password' => Hash::make('secret'),
         //     // ... other attributes
-        // ]);
+        // ])->assignRole('');
+
+
         $user = User::create([
-            'name' => 'CodeAstro',
+            'name' => 'Superadmin',
             'email' => 'diusazzad@edu.bd',
             'password' => bcrypt('password'), // Uses bcrypt for password hashing (recommended)
         ])->assignRole('super-admin');
-        
+
     }
 }

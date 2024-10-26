@@ -126,6 +126,9 @@ class SuperAdminController extends Controller
     {
         return view('user.superadmin.report.already_expried');
     }
+
+
+
     public function superadmin_supplier_create()
     {
         return view('user.superadmin.supplier.create');
@@ -193,4 +196,7 @@ class SuperAdminController extends Controller
     {
         return view('user.superadmin.payment.index');
     }
+
+
+
 }

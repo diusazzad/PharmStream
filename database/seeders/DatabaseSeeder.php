@@ -19,13 +19,26 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        $this->call([UserSeeder::class]);
-        $this->call([NotificationSeeder::class]);
-        $this->call([SupplierSeeder::class]);
-        $this->call([CategoriesSeeder::class]);
-        $this->call([PurchaseSeeder::class]);
-        $this->call([ProductSeeder::class]);
-        $this->call([SaleSeeder::class]);
-        $this->call([RoleAndPermissionSeeder::class]);
+        // $this->call([UserSeeder::class]);
+        // $this->call([NotificationSeeder::class]);
+        // $this->call([SupplierSeeder::class]);
+        // $this->call([CategoriesSeeder::class]);
+        // $this->call([PurchaseSeeder::class]);
+        // $this->call([ProductSeeder::class]);
+        // $this->call([SaleSeeder::class]);
+        // $this->call([RoleAndPermissionSeeder::class]);
+
+        // Seed the database with predefined data
+        $this->call([
+            RolesAndPermissionsSeeder::class,
+            UserSeeder::class,
+
+            // NotificationSeeder::class,
+            // SupplierSeeder::class,
+            // CategoriesSeeder::class,
+            // PurchaseSeeder::class,
+            // ProductSeeder::class,
+            // SaleSeeder::class,
+        ]);
     }
 }

@@ -34,7 +34,8 @@
     <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="content-wrapper container-xxl p-0">
-            {{-- <x-dashboard.modal.index /> --}}
+            {{--
+            <x-dashboard.modal.index /> --}}
 
             @yield('content')
 
