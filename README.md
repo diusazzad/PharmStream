@@ -2,11 +2,10 @@
 
 Here are some screenshots of the system design:
 
-![Screenshot](SystemDesign\screenshot\1.png)
-![Screenshot](SystemDesign\screenshot\2.png)
+![Screenshot](https://github.com/diusazzad/PharmStream/blob/main/SystemDesign/screenshot/1.png)
+![Screenshot](https://github.com/diusazzad/PharmStream/blob/main/SystemDesign/screenshot/2.png)
 
 # Pharmacy Management System
-
 
 ## Overview
 
