@@ -24,10 +24,11 @@ class UserSeeder extends Seeder
 
 
         $user = User::create([
-            'name' => 'Superadmin',
-            'email' => 'diusazzad@edu.bd',
-            'password' => bcrypt('password'), // Uses bcrypt for password hashing (recommended)
-        ])->assignRole('super-admin');
+            'name' => "Jamal Admin",
+            'email' => "admin@admin.com",
+            'password' => Hash::make('admin'),
+        ]);
+        $user->assignRole('super-admin');
 
     }
 }

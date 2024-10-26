@@ -866,10 +866,8 @@ button.bg-danger:hover {
 	box-shadow: unset;
 }
 .page-item.active .page-link {
-	/* background-color: #00d0f1;
-	border-color: #00d0f1; */
-	background-color: #212529;
-	border-color: #212529;
+	background-color: #00d0f1;
+	border-color: #00d0f1;
 }
 .dropdown-menu {
 	border: 1px solid rgba(0, 0, 0, 0.1);
@@ -1002,8 +1000,7 @@ button.bg-danger:hover {
 	line-height: 38px;
 }
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
-	/* background-color: #00d0f1; */
-	background-color: #343a40;
+	background-color: #00d0f1;
 }
 .select2-container--default .select2-selection--multiple {
 	border: 1px solid #ddd;
@@ -1671,8 +1668,7 @@ html.menu-opened body {
 -----------------------*/
 
 .sidebar {
-    /* background-color: #1b5a90; */
-	background-color: #343a40;
+    background-color: #1b5a90;
    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
     bottom: 0;
     left: 0;
@@ -1714,16 +1710,15 @@ html.menu-opened body {
     color: #5ae8ff;
 }
 .sidebar-menu > ul > li > a:hover {
-	background-color: #212529;
+	background-color: #19c1dc;
     color: #fff;
 }
 .sidebar-menu > ul > li.active > a:hover {
-    background-color: #212529;
+    background-color: #19c1dc;
     color: #fff;
 }
 .sidebar-menu li.active a {
-    /* background-color: #00d0f1; */
-	background-color: #212529;
+    background-color: #00d0f1;
     color: #fff;
 }
 .menu-title {
@@ -2047,8 +2042,7 @@ html.menu-opened body {
     display: flex;
     justify-content: center;
     padding: 40px;
-    /* width: 400px; */
-	width: 480px;
+    width: 400px;
 }
 .login-wrapper .loginbox .login-right .login-right-wrap {
     max-width: 100%;

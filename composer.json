@@ -6,13 +6,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "consoletvs/charts": "^6.7",
         "inertiajs/inertia-laravel": "^1.0",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "milon/barcode": "^11.0",
+        "qcod/laravel-app-settings": "^1.7",
         "santigarcor/laratrust": "^8.3",
         "spatie/laravel-permission": "^6.9",
+        "spatie/laravel-settings": "^3.4",
         "tightenco/ziggy": "^2.0",
         "yajra/laravel-datatables-oracle": "11.0"
     },

@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
 
         // Seed the database with predefined data
         $this->call([
-            RolesAndPermissionsSeeder::class,
+            RoleAndPermissionSeeder::class,
             UserSeeder::class,
 
             // NotificationSeeder::class,
