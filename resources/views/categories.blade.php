@@ -127,7 +127,7 @@
 <!-- /Edit Details Modal -->
 
 <!-- Delete Modal -->
-<x-modals.delete :route="'categories'" :title="'Category'" />
+<x-modals.delete :route="'categories'" :title="'Category'"/>
 <!-- /Delete Modal -->
 @endsection
 

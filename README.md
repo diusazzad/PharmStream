@@ -4,6 +4,11 @@ Here are some screenshots of the system design:
 
 ![Screenshot](https://github.com/diusazzad/PharmStream/blob/main/SystemDesign/screenshot/1.png)
 ![Screenshot](https://github.com/diusazzad/PharmStream/blob/main/SystemDesign/screenshot/2.png)
+![Screenshot](https://github.com/diusazzad/PharmStream/blob/main/SystemDesign/screenshot/3.png)
+![Screenshot](https://github.com/diusazzad/PharmStream/blob/main/SystemDesign/screenshot/4.png)
+![Screenshot](https://github.com/diusazzad/PharmStream/blob/main/SystemDesign/screenshot/5.png)
+![Screenshot](https://github.com/diusazzad/PharmStream/blob/main/SystemDesign/screenshot/6.png)
+![Screenshot](https://github.com/diusazzad/PharmStream/blob/main/SystemDesign/screenshot/7.png)
 
 # Pharmacy Management System
 

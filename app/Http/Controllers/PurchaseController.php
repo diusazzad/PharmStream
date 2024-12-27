@@ -6,147 +6,140 @@ use App\Models\Category;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PurchaseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $title = "purchases";
-        $purchases = Purchase::with('category')->get();
-        return view('purchases',compact(
-            'title','purchases'
-        ));
+        try {
+            $title = "Purchases";
+            $purchases = Purchase::with('category')->get();
+            return view('purchases', compact('title', 'purchases'));
+        } catch (\Exception $e) {
+            Log::error('Error fetching purchases: ' . $e->getMessage());
+            return back()->withErrors('Unable to retrieve purchases at this time.');
+        }
     }
 
-    /**
-     * Display a create page of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $title = "add Purhase";
-        $categories = Category::get();
-        $suppliers = Supplier::get();
-        return view('add-purchase',compact(
-            'title','categories','suppliers'
-        ));
+        try {
+            $title = "Add Purchase";
+            $categories = Category::all();
+            $suppliers = Supplier::all();
+            return view('add-purchase', compact('title', 'categories', 'suppliers'));
+        } catch (\Exception $e) {
+            Log::error('Error fetching categories or suppliers: ' . $e->getMessage());
+            return back()->withErrors('Unable to retrieve data at this time.');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name'=>'required|max:200',
-            'category'=>'required',
-            'price'=>'required|min:1',
-            'quantity'=>'required|min:1',
-            'expiry_date'=>'required',
-            'supplier'=>'required',
-            'image'=>'file|image|mimes:jpg,jpeg,png,gif',
+        $request->validate([
+            'name' => 'required|max:200',
+            'category' => 'required',
+            'price' => 'required|numeric|min:1',
+            'quantity' => 'required|numeric|min:1',
+            'expiry_date' => 'required|date',
+            'supplier' => 'required',
+            'image' => 'nullable|file|image|mimes:jpg,jpeg,png,gif',
         ]);
-        $imageName = null;
-        if($request->hasFile('image')){
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('storage/purchases'), $imageName);
+
+        try {
+            $imageName = null;
+            if ($request->hasFile('image')) {
+                $imageName = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('storage/purchases'), $imageName);
+            }
+
+            Purchase::create([
+                'name' => $request->name,
+                'category_id' => $request->category,
+                'supplier_id' => $request->supplier,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'expiry_date' => $request->expiry_date,
+                'image' => $imageName,
+            ]);
+
+            return redirect()->route('purchases')->with([
+                'message' => "Purchase has been added",
+                'alert-type' => 'success',
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error adding purchase: ' . $e->getMessage());
+            return back()->withErrors('Unable to add purchase at this time.');
         }
-        Purchase::create([
-            'name'=>$request->name,
-            'category_id'=>$request->category,
-            'supplier_id'=>$request->supplier,
-            'price'=>$request->price,
-            'quantity'=>$request->quantity,
-            'expiry_date'=>$request->expiry_date,
-            'image'=>$imageName,
-        ]);
-        $notifications = array(
-            'message'=>"Purchase has been added",
-            'alert-type'=>'success',
-        );
-        return redirect()->route('purchases')->with($notifications);
     }
 
-    /**
-     * Display the specified resource.
-     *@param  \Illuminate\Http\Request $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        $title = "Edit Purchase";
-        $purchase = Purchase::find($id);
-        $categories = Category::get();
-        $suppliers = Supplier::get();
-        return view('edit-purchase',compact(
-            'title','purchase','categories','suppliers'
-        ));
+        try {
+            $title = "Edit Purchase";
+            $purchase = Purchase::findOrFail($id);
+            $categories = Category::all();
+            $suppliers = Supplier::all();
+            return view('edit-purchase', compact('title', 'purchase', 'categories', 'suppliers'));
+        } catch (\Exception $e) {
+            Log::error('Error fetching purchase: ' . $e->getMessage());
+            return redirect()->route('purchases')->withErrors('Purchase not found.');
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Purchase $purchase
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Purchase $purchase)
     {
-        $this->validate($request,[
-            'name'=>'required|max:200',
-            'category'=>'required',
-            'price'=>'required',
-            'quantity'=>'required',
-            'expiry_date'=>'required',
-            'supplier'=>'required',
-            'image'=>'file|image|mimes:jpg,jpeg,png,gif',
+        $request->validate([
+            'name' => 'required|max:200',
+            'category' => 'required',
+            'price' => 'required|numeric|min:1',
+            'quantity' => 'required|numeric|min:1',
+            'expiry_date' => 'required|date',
+            'supplier' => 'required',
+            'image' => 'nullable|file|image|mimes:jpg,jpeg,png,gif',
         ]);
-        $imageName = null;
-        if($request->hasFile('image')){
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('storage/purchases'), $imageName);
+
+        try {
+            $imageName = $purchase->image;
+            if ($request->hasFile('image')) {
+                $imageName = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('storage/purchases'), $imageName);
+            }
+
+            $purchase->update([
+                'name' => $request->name,
+                'category_id' => $request->category,
+                'supplier_id' => $request->supplier,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'expiry_date' => $request->expiry_date,
+                'image' => $imageName,
+            ]);
+
+            return redirect()->route('purchases')->with([
+                'message' => "Purchase has been updated",
+                'alert-type' => 'success',
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error updating purchase: ' . $e->getMessage());
+            return back()->withErrors('Unable to update purchase at this time.');
         }
-        
-        $purchase->update([
-            'name'=>$request->name,
-            'category_id'=>$request->category,
-            'supplier_id'=>$request->supplier,
-            'price'=>$request->price,
-            'quantity'=>$request->quantity,
-            'expiry_date'=>$request->expiry_date,
-            'image'=>$imageName,
-        ]);
-        $notifications = array(
-            'message'=>"Purchase has been updated",
-            'alert-type'=>'success',
-        );
-        return redirect()->route('purchases')->with($notifications);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Illuminate\Http\Request
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request)
     {
-        $purchase = Purchase::find($request->id);
-        $purchase->delete();
-        $notification =array(
-            'message'=>"Purchase has been deleted",
-            'alert-type'=>'success'
-        );
-        return back()->with($notification);
+        try {
+            $purchase = Purchase::findOrFail($request->id);
+            $purchase->delete();
+
+            return back()->with([
+                'message' => "Purchase has been deleted",
+                'alert-type' => 'success',
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error deleting purchase: ' . $e->getMessage());
+            return back()->withErrors('Unable to delete purchase at this time.');
+        }
     }
 }

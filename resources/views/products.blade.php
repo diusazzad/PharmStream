@@ -21,7 +21,6 @@
 @section('content')
 <div class="row">
 	<div class="col-md-12">
-	
 		<!-- Products -->
 		<div class="card">
 			<div class="card-body">
@@ -39,7 +38,6 @@
 							</tr>
 						</thead>
 						<tbody>
-
 							@foreach ($products as $product)
 								@if($product->purchase()->exists())
 								<tr>
@@ -54,13 +52,10 @@
 										</h2>
 									</td>
 									<td>{{$product->purchase->category->name}}</td>
-									<td>{{AppSettings::get('app_currency', '$')}} {{$product->price}}
-									</td>
+									<td>{{AppSettings::get('app_currency', '$')}} {{$product->price}}</td>
 									<td>{{$product->purchase->quantity}}</td>
 									<td>{{$product->discount}}%</td>
-									<td>
-									{{date_format(date_create($product->purchase->expiry_date),"d M, Y")}}</span>										
-									</td>
+									<td>{{date_format(date_create($product->purchase->expiry_date),"d M, Y")}}</td>
 									<td>
 										<div class="actions">
 											<a class="btn btn-sm bg-success-light" href="{{route('edit-product',$product)}}">
@@ -74,14 +69,12 @@
 								</tr>
 								@endif
 							@endforeach
-							
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 		<!-- /Products -->
-		
 	</div>
 </div>
 

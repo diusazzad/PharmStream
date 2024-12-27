@@ -4,166 +4,133 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Product;
-use App\Models\Setting;
-use App\Models\Category;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
-use App\Notifications\StockAlert;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $title = "products";
         $products = Product::with('purchase')->get();
-    
-        return view('products',compact(
-            'title','products',
-        ));
+        return view('products', compact('title', 'products'));
     }
 
-    public function create(){
-        $title= "Add Product";
-        $products = Purchase::get();
-        return view('add-product',compact(
-            'title','products',
-        ));
+    public function create()
+    {
+        $title = "Add Product";
+        $products = Purchase::all();
+        return view('add-product', compact('title', 'products'));
     }
-    
 
-    /**
-     * Display a listing of expired resources.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function expired(){
+    public function expired()
+    {
         $title = "expired Products";
         $products = Purchase::whereDate('expiry_date', '=', Carbon::now())->get();
-        
-        return view('expired',compact(
-            'title','products'
-        ));
+        return view('expired', compact('title', 'products'));
     }
 
-    /**
-     * Display a listing of out of stock resources.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function outstock(){
+    public function outstock()
+    {
         $title = "outstocked Products";
         $products = Purchase::where('quantity', '<=', 0)->get();
-        $product = Purchase::where('quantity', '<=', 0)->first();
-        // auth()->user()->notify(new StockAlert($product));
-        
-        return view('outstock',compact(
-            'title','products',
-        ));
+        return view('outstock', compact('title', 'products'));
     }
-    
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'product'=>'required|max:200',
-            'price'=>'required|min:1',
-            'discount'=>'nullable',
-            'description'=>'nullable|max:200',
+        $request->validate([
+            'product' => 'required|exists:purchases,id|max:200',
+            'price' => 'required|numeric|min:1',
+            'discount' => 'nullable|numeric|min:0',
+            'description' => 'nullable|max:200',
         ]);
+
         $price = $request->price;
-        if($request->discount >0){
-           $price = $request->discount * $request->price;
+        if ($request->discount > 0) {
+            $price -= ($request->discount / 100) * $request->price;
         }
-        Product::create([
-            'purchase_id'=>$request->product,
-            'price'=>$price,
-            'discount'=>$request->discount,
-            'description'=>$request->description,
-        ]);
-        $notification=array(
-            'message'=>"Product has been added",
-            'alert-type'=>'success',
-        );
-        return redirect()->route('products')->with($notification);
+
+        try {
+            Product::create([
+                'purchase_id' => $request->product,
+                'price' => $price,
+                'discount' => $request->discount,
+                'description' => $request->description,
+            ]);
+
+            return redirect()->route('products')->with([
+                'message' => "Product has been added",
+                'alert-type' => 'success',
+            ]);
+        } catch (\Exception $e) {
+            return back()->withErrors(['Error adding product: ' . $e->getMessage()]);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Request $request, $id)
+    public function show($id)
     {
         $title = "Edit Product";
         $product = Product::find($id);
-        $purchased_products = Purchase::get();
-        return view('edit-product',compact(
-            'title','product','purchased_products'
-        ));
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request,Product $product)
-    {
-        $this->validate($request,[
-            'product'=>'required|max:200',
-            'price'=>'required',
-            'discount'=>'nullable',
-            'description'=>'nullable|max:200',
-        ]);
-        
-        $price = $request->price;
-        if($request->discount >0){
-           $price = $request->discount * $request->price;
+        if (!$product) {
+            return redirect()->route('products')->withErrors(['Product not found']);
         }
-       $product->update([
-            'purchase_id'=>$request->product,
-            'price'=>$price,
-            'discount'=>$request->discount,
-            'description'=>$request->description,
-        ]);
-        $notification=array(
-            'message'=>"Product has been updated",
-            'alert-type'=>'success',
-        );
-        return redirect()->route('products')->with($notification);
+
+        $purchased_products = Purchase::all();
+        return view('edit-product', compact('title', 'product', 'purchased_products'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
+    public function update(Request $request, Product $product)
+    {
+        $request->validate([
+            'product' => 'required|exists:purchases,id|max:200',
+            'price' => 'required|numeric|min:1',
+            'discount' => 'nullable|numeric|min:0',
+            'description' => 'nullable|max:200',
+        ]);
+
+        $price = $request->price;
+        if ($request->discount > 0) {
+            $price -= ($request->discount / 100) * $request->price;
+        }
+
+        try {
+            $product->update([
+                'purchase_id' => $request->product,
+                'price' => $price,
+                'discount' => $request->discount,
+                'description' => $request->description,
+            ]);
+
+            return redirect()->route('products')->with([
+                'message' => "Product has been updated",
+                'alert-type' => 'success',
+            ]);
+        } catch (\Exception $e) {
+            return back()->withErrors(['Error updating product: ' . $e->getMessage()]);
+        }
+    }
+
     public function destroy(Request $request)
     {
         $product = Product::find($request->id);
-        $product->delete();
-        $notification = array(
-            'message'=>"Product has been deleted",
-            'alert-type'=>'success',
-        );
-        return back()->with($notification);
+
+        if (!$product) {
+            return back()->withErrors(['Product not found']);
+        }
+
+        try {
+            $product->delete();
+
+            return back()->with([
+                'message' => "Product has been deleted",
+                'alert-type' => 'success',
+            ]);
+        } catch (\Exception $e) {
+            return back()->withErrors(['Error deleting product: ' . $e->getMessage()]);
+        }
     }
 }

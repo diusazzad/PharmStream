@@ -21,7 +21,7 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
-        "angular": "^1.6.10",
+        "chart.js": "^4.4.7",
         "vue": "^3.4.38",
         "vue-router": "^4.4.3"
     }

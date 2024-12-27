@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SupplierController extends Controller
 {
@@ -15,9 +16,14 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $title ="Suppliers";
-        $suppliers = Supplier::get();
-        return view('suppliers',compact('title','suppliers'));
+        try {
+            $title = "Suppliers";
+            $suppliers = Supplier::all();
+            return view('suppliers', compact('title', 'suppliers'));
+        } catch (\Exception $e) {
+            Log::error('Error fetching suppliers: ' . $e->getMessage());
+            return back()->withErrors('Unable to retrieve suppliers at this time.');
+        }
     }
 
     /**
@@ -27,11 +33,14 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        $title = "add supplier";
-        $products = Product::get();
-        return view('add-supplier',compact(
-            'title','products'
-        ));
+        try {
+            $title = "Add Supplier";
+            $products = Product::all();
+            return view('add-supplier', compact('title', 'products'));
+        } catch (\Exception $e) {
+            Log::error('Error fetching products: ' . $e->getMessage());
+            return back()->withErrors('Unable to retrieve products at this time.');
+        }
     }
 
     /**
@@ -42,45 +51,54 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name'=>'required',
-            'product'=>'required',
-            'email'=>'email|string',
-            'phone'=>'max:13',
-            'company'=>'max:200|required',
-            'address'=>'required|max:200',
-            'description' =>'max:200',
+        $request->validate([
+            'name' => 'required',
+            'product' => 'required',
+            'email' => 'email|string',
+            'phone' => 'max:13',
+            'company' => 'max:200|required',
+            'address' => 'required|max:200',
+            'description' => 'max:200',
         ]);
-        Supplier::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'phone'=>$request->phone,
-            'company'=>$request->company,
-            'address'=>$request->address,
-            'product'=>$request->product,
-            'description'=>$request->description,
-        ]);
-        $notification = array(
-            'message'=>"Supplier has been added",
-            'alert-type'=>'success',
-        );
-        return redirect()->route('suppliers')->with($notification);
+
+        try {
+            Supplier::create($request->only([
+                'name',
+                'email',
+                'phone',
+                'company',
+                'address',
+                'product',
+                'description'
+            ]));
+
+            return redirect()->route('suppliers')->with([
+                'message' => "Supplier has been added",
+                'alert-type' => 'success',
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error adding supplier: ' . $e->getMessage());
+            return back()->withErrors('Unable to add supplier at this time.');
+        }
     }
 
     /**
      * Display the specified resource.
-     *@param  \Illuminate\Http\Request  $request
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$id)
+    public function show($id)
     {
-        $title = "edit Supplier";
-        $products = Product::get();
-        $supplier = Supplier::find($id);
-        return view('edit-supplier',compact(
-            'title','products','supplier'
-        ));
+        try {
+            $title = "Edit Supplier";
+            $products = Product::all();
+            $supplier = Supplier::findOrFail($id);
+            return view('edit-supplier', compact('title', 'products', 'supplier'));
+        } catch (\Exception $e) {
+            Log::error('Error fetching supplier: ' . $e->getMessage());
+            return back()->withErrors('Unable to retrieve supplier at this time.');
+        }
     }
 
     /**
@@ -92,22 +110,35 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        $this->validate($request,[
-            'name'=>'required',
-            'product'=>'required',
-            'email'=>'email|string',
-            'phone'=>'max:13',
-            'company'=>'max:200|required',
-            'address'=>'required|max:200',
-            'description' =>'max:200',
+        $request->validate([
+            'name' => 'required',
+            'product' => 'required',
+            'email' => 'email|string',
+            'phone' => 'max:13',
+            'company' => 'max:200|required',
+            'address' => 'required|max:200',
+            'description' => 'max:200',
         ]);
 
-        $supplier->update($request->all());
-        $notification = array(
-            'message'=>"Supplier has been updated",
-            'alert-type'=>'success',
-        );
-        return redirect()->route('suppliers')->with($notification);
+        try {
+            $supplier->update($request->only([
+                'name',
+                'email',
+                'phone',
+                'company',
+                'address',
+                'product',
+                'description'
+            ]));
+
+            return redirect()->route('suppliers')->with([
+                'message' => "Supplier has been updated",
+                'alert-type' => 'success',
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error updating supplier: ' . $e->getMessage());
+            return back()->withErrors('Unable to update supplier at this time.');
+        }
     }
 
     /**
@@ -118,12 +149,17 @@ class SupplierController extends Controller
      */
     public function destroy(Request $request)
     {
-        $supplier = Supplier::find($request->id);
-        $supplier->delete();
-        $notification = array(
-            'message'=>"Supplier has been deleted",
-            'alert-type'=>'success',
-        );
-        return back()->with($notification);
+        try {
+            $supplier = Supplier::findOrFail($request->id);
+            $supplier->delete();
+
+            return back()->with([
+                'message' => "Supplier has been deleted",
+                'alert-type' => 'success',
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Error deleting supplier: ' . $e->getMessage());
+            return back()->withErrors('Unable to delete supplier at this time.');
+        }
     }
 }
